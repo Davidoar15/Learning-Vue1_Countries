@@ -1,7 +1,8 @@
 <script setup lang="ts">
   import { onMounted, ref } from "vue";
-  import PageHeader from './components/PageHeader.vue';
   import axiosClient from "./utils/axios";
+  import PageHeader from './components/PageHeader.vue';
+  import CountryList from './components/CountryList.vue';
   import { Country } from "./types/country";
 
   const countries = ref<Country[]>([]);
@@ -22,10 +23,8 @@
 
 <template>
   <PageHeader />
-  <div 
-    v-for="country in countries"
-  >
-    {{ country.name.common }}
+  <div class="container max-w-screen-lg mx-auto px-6">
+    <CountryList :countries="countries"/>
   </div>
 </template>
 
