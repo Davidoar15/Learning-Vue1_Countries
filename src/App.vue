@@ -1,8 +1,9 @@
 <script setup lang="ts">
+  import PageHeader from './components/PageHeader.vue';
 </script>
 
 <template>
-  <h1>Countries</h1>
+  <PageHeader />
 </template>
 
 <!-- <style scoped>
