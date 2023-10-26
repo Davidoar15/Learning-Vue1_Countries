@@ -7,6 +7,9 @@
 
   const countries = ref<Country[]>([]);
 
+  const search = ref("");
+  const filteredCountries = ref<Country[]>([]);
+
   const getCountries = async () => {
     try {
       const { data } = await axiosClient.get("/all");
@@ -16,6 +19,12 @@
     }
   };
 
+  const filterCountries = () => {
+    filteredCountries.value = countries.value.filter((country) => {
+      return country.name.common.toLowerCase().includes(search.value.toLowerCase());
+    });
+  };
+
   onMounted(() => {
     getCountries();
   });
@@ -23,8 +32,21 @@
 
 <template>
   <PageHeader />
+
   <div class="container max-w-screen-lg mx-auto px-6">
-    <CountryList :countries="countries"/>
+    <div class="mb-8">
+        <input 
+            type="text"
+            placeholder="Search Country..."
+            v-model="search"
+            @input="filterCountries"
+            class="border border-gray-300 rounded w-full p-1 px-4"
+        />
+    </div>
+  </div>
+
+  <div class="container max-w-screen-lg mx-auto px-6">
+    <CountryList :countries="filteredCountries.length > 0 ? filteredCountries : countries"/>
   </div>
 </template>
 
