@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import { defineProps } from 'vue/dist/vue.js';
     import { Country } from '../types/country';
+    import CountryItem from './CountryItem.vue';
 
     interface Props {
         countries: Country[];
@@ -15,7 +16,7 @@
             v-for="country in countries"
             class="border border-gray-300 rounded p-3"
         >
-            {{ country.name.common }}
+            <CountryItem :country="country"/>
         </div>
     </div>
 </template>
