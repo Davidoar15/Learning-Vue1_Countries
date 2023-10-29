@@ -93,8 +93,19 @@
     </div>
   </div>
 
+  <div 
+    v-if="paginatedCountries.length === 0" 
+    class="container max-w-screen-lg mx-auto px-6 text-center"
+  >
+      <p class="font-extrabold text-xl text-green-700">
+        There are No Results...
+      </p>
+  </div>
 
-  <div class="container max-w-screen-lg mx-auto px-6">
+  <div 
+    v-else
+    class="container max-w-screen-lg mx-auto px-6"
+  >
     <CountryList :countries="paginatedCountries"/>
   </div>
 </template>
